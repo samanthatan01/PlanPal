@@ -1,11 +1,10 @@
-CREATE database planpal
-
 -- create personnel table
 CREATE TABLE personnel (
     personnel_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
+	password VARCHAR(100) NOT NULL,
     contact VARCHAR(8) NOT NULL,
     diet VARCHAR(50) NOT NULL,
     is_active BOOLEAN DEFAULT TRUE NOT NULL,
@@ -13,9 +12,8 @@ CREATE TABLE personnel (
 );
 
 -- seed two users into personnel table
-INSERT INTO personnel (first_name, last_name, email, contact, diet) VALUES ('Sam', 'Tan', 'sam@abc.com', '12345678', 'VEGETARIAN');
-INSERT INTO personnel (first_name, last_name, email, contact, diet) VALUES ('Kim', 'Lee', 'kim@abc.com', '87654321', 'LACTOSE-INTOLERANT');
-INSERT INTO personnel (first_name, last_name, email, contact, diet) VALUES ('Kris', 'Teo', 'kris@abc.com', '98765432', 'NONE');
+INSERT INTO personnel (first_name, last_name, password, email, contact, diet) VALUES ('Kim', 'Lee', '$2b$12$/EXwTNh77KPqUlV59oksJe5yf9wiIrX28RrPnlcJ1s7vcjxtxtVaO', 'kim@abc.com', '87654321', 'LACTOSE-INTOLERANT');
+INSERT INTO personnel (first_name, last_name, password, email, contact, diet) VALUES ('Kris', 'Teo', '$2b$12$/EXwTNh77KPqUlV59oksJe5yf9wiIrX28RrPnlcJ1s7vcjxtxtVaO', 'kris@abc.com', '98765432', 'VEGETARIAN');
 
 
 -- create diets table
@@ -31,9 +29,8 @@ INSERT INTO diets (diet) VALUES ('NONE');
 
 
 SELECT * FROM diets;
--- DROP TABLE diets;
 SELECT * FROM personnel;
--- DROP TABLE personnel;
+
 
 
 -- create events 
@@ -73,3 +70,8 @@ SELECT * FROM event_guests;
 
 -- seed one RSVP into event_guests table
 INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (1, 3, 'NONE', TRUE);
+
+drop table diets;
+drop table personnel;
+drop table events;
+drop table event_guests;
