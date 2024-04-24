@@ -90,4 +90,25 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const refresh = async (req, res) => {
+  try {
+    const decoded = jwt.verify(req.body.refresh, process.env.REFRESH_SECRET);
+
+    //store the payload inside the claims
+    const claims = {
+      email: decoded.email,
+    };
+
+    const access = jwt.sign(claims, process.env.ACCESS_SECRET, {
+      expiresIn: "20m",
+      jwtid: uuidv4(),
+    });
+
+    res.json({ access });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "refreshing token failed" });
+  }
+};
+
+module.exports = { register, login, refresh };
