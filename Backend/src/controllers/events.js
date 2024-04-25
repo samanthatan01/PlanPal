@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 
+// logged in user to create an event
 const createEvent = async (req, res) => {
   try {
     const client = await pool.connect();
@@ -20,6 +21,7 @@ const createEvent = async (req, res) => {
   }
 };
 
+// get all events where logged in user is the host
 const getAllEventsHostedByUser = async (req, res) => {
   try {
     const client = await pool.connect();
@@ -37,6 +39,7 @@ const getAllEventsHostedByUser = async (req, res) => {
   }
 };
 
+// allow host to update event
 const updateEvent = async (req, res) => {
   try {
     const client = await pool.connect();
@@ -53,7 +56,9 @@ const updateEvent = async (req, res) => {
 
     // if personnel_id of logged in user is not the host_id of the event, return unauthorised message. else proceed to update event
     if (eventData.rows[0].host_id != loggedInUserId) {
-      res.status(401).json({ status: "error", msg: "unauthorised user" });
+      return res
+        .status(401)
+        .json({ status: "error", msg: "unauthorised user" });
     }
 
     const { title, date, time, address, response_deadline } = req.body;
@@ -70,6 +75,7 @@ const updateEvent = async (req, res) => {
   }
 };
 
+// allow host to delete (change is_active to false)
 const deleteEvent = async (req, res) => {
   try {
     const client = await pool.connect();
@@ -86,7 +92,9 @@ const deleteEvent = async (req, res) => {
 
     // if personnel_id of logged in user is not the host_id of the event, return unauthorised message. else proceed to update event
     if (eventData.rows[0].host_id != loggedInUserId) {
-      res.status(401).json({ status: "error", msg: "unauthorised user" });
+      return res
+        .status(401)
+        .json({ status: "error", msg: "unauthorised user" });
     }
 
     const { is_active } = req.body;
