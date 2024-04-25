@@ -11,7 +11,7 @@ const user = (req, res, next) => {
       console.log("test");
       const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
       console.log("test", decoded);
-      req.decoded = decoded;
+      req.decoded = decoded; // this is where the claims are stored
       next();
     } catch (error) {
       console.error(error.message);
