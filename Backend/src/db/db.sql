@@ -85,7 +85,7 @@ INNER JOIN event_guests eg
 ON e.event_id = eg.event_id
 INNER JOIN personnel p
 ON p.personnel_id = eg.guest_id
-WHERE e.host_id = 1
+WHERE e.host_id = 12
 ORDER BY eg.is_attending DESC;
 
 -- sample update guest attendance via event_guests table
@@ -97,6 +97,10 @@ UPDATE event_guests
 UPDATE personnel
 	SET first_name = 'Kristi', diet = 'NONE'
 	WHERE personnel_id = 3;
+
+-- sample delete guest from guestlist
+DELETE FROM event_guests
+	WHERE event_id = 1 AND guest_id = 2;
 
 
 
