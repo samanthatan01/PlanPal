@@ -71,7 +71,13 @@ SELECT * FROM event_guests;
 -- seed one RSVP into event_guests table
 INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (1, 3, 'NONE', TRUE);
 
-drop table diets;
-drop table personnel;
-drop table events;
-drop table event_guests;
+-- join events <> event_guests <> personnel table to get event name and associate guestlist
+
+
+
+
+---------------------------------------------------------------------------------------------------------
+-- drop table diets;
+-- drop table personnel;
+-- drop table events;
+-- drop table event_guests;
