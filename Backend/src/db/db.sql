@@ -69,10 +69,34 @@ CREATE TABLE event_guests (
 SELECT * FROM event_guests;
 
 -- seed one RSVP into event_guests table
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (1, 3, 'NONE', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (1, 3, 'VEGETARIAN', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (1, 2, 'LACTOSE-INTOLERANT', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (2, 1, 'NONE', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (4, 3, 'VEGETARIAN', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (5, 1, 'NONE', FALSE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (5, 2, 'LACTOSE-INTOLERANT', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (5, 3, 'VEGETARIAN', TRUE);
+
 
 -- join events <> event_guests <> personnel table to get event name and associate guestlist
+SELECT e.event_id, e.title, e.date, e.time, e.address, e.host_id, eg.guest_id, eg.is_attending, eg.diet, p.first_name, p.last_name, p.email, p.contact
+FROM events e
+INNER JOIN event_guests eg
+ON e.event_id = eg.event_id
+INNER JOIN personnel p
+ON p.personnel_id = eg.guest_id
+WHERE e.host_id = 1
+ORDER BY eg.is_attending DESC;
 
+-- sample update guest attendance via event_guests table
+UPDATE event_guests
+	SET is_attending = false
+	WHERE event_id = 5 AND guest_id = 2;
+
+-- sample update guest information via personnel table
+UPDATE personnel
+	SET first_name = 'Kristi', diet = 'NONE'
+	WHERE personnel_id = 3;
 
 
 
