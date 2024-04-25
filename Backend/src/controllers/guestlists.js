@@ -1,5 +1,6 @@
 const pool = require("../db/db");
 
+// get guestlist for a selected event
 const getGuestlist = async (req, res) => {
   try {
     const client = await pool.connect();
@@ -30,6 +31,7 @@ const getGuestlist = async (req, res) => {
   }
 };
 
+// host to update guest attendance for the selected event
 const updateGuestAttendance = async (req, res) => {
   try {
     const client = await pool.connect();
@@ -69,6 +71,7 @@ const updateGuestAttendance = async (req, res) => {
   }
 };
 
+// host to update guest information for the selected event
 const updateGuestInfo = async (req, res) => {
   try {
     const client = await pool.connect();
@@ -120,4 +123,47 @@ const updateGuestInfo = async (req, res) => {
   }
 };
 
-module.exports = { getGuestlist, updateGuestAttendance, updateGuestInfo };
+// host to remove guest from the selected event
+const deleteGuestFromEvent = async (req, res) => {
+  try {
+    const client = await pool.connect();
+
+    // get logged in user personnel_id
+    const loggedInUserId = req.decoded.id;
+
+    // get host_id from event data to compare with loggedInUserId to protect route
+    const { event_id } = req.body;
+    const hostData = await client.query(
+      "SELECT host_id FROM events where event_id = $1",
+      [event_id]
+    );
+    const hostId = hostData.rows[0].host_id;
+
+    // if host_id != loggedInUserId, unauthorised to update.
+    if (hostId != loggedInUserId) {
+      return res
+        .status(401)
+        .json({ status: "error", msg: "unauthorised user" });
+    }
+
+    // else proceed to delete guest from event_guests table where event_id = $1 and guest_id = $2
+    const { guest_id } = req.body;
+    await client.query(
+      "DELETE FROM event_guests WHERE event_id = $1 AND guest_id = $2",
+      [event_id, guest_id]
+    );
+
+    client.release();
+    res.status(200).json({ status: "ok", msg: "guest removed from event" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "fail to remove guest" });
+  }
+};
+
+module.exports = {
+  getGuestlist,
+  updateGuestAttendance,
+  updateGuestInfo,
+  deleteGuestFromEvent,
+};
