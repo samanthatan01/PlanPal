@@ -39,6 +39,23 @@ const getAllEventsHostedByUser = async (req, res) => {
   }
 };
 
+// allow host and guests to access event data by id
+const getEventById = async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const event_id = req.params.id;
+    const event = await client.query(
+      "SELECT * FROM events WHERE event_id = ($1)",
+      [event_id]
+    );
+    client.release();
+    res.status(200).json(event.rows);
+  } catch (error) {
+    console.error(error.message);
+    res.status(400).json({ status: "error", msg: "fail to retrieve event" });
+  }
+};
+
 // allow host to update event
 const updateEvent = async (req, res) => {
   try {
@@ -47,7 +64,7 @@ const updateEvent = async (req, res) => {
     const loggedInUserId = req.decoded.id;
 
     // retrieve event data by id
-    const event_id = parseInt(req.params.id);
+    const event_id = req.params.id;
 
     const eventData = await client.query(
       "SELECT * FROM events WHERE event_id = $1",
@@ -83,7 +100,7 @@ const deleteEvent = async (req, res) => {
     const loggedInUserId = req.decoded.id;
 
     // retrieve event data by id
-    const event_id = parseInt(req.params.id);
+    const event_id = req.params.id;
 
     const eventData = await client.query(
       "SELECT * FROM events WHERE event_id = $1",
@@ -114,6 +131,7 @@ const deleteEvent = async (req, res) => {
 module.exports = {
   createEvent,
   getAllEventsHostedByUser,
+  getEventById,
   updateEvent,
   deleteEvent,
 };
