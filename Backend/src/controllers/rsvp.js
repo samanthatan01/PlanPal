@@ -1,5 +1,4 @@
 const pool = require("../db/db");
-const { all } = require("../routers/auth");
 
 // PUT/ SUBMIT RSVP
 // logged in user added into the event guestlist after submitting a response
