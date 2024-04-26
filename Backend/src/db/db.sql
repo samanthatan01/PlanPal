@@ -14,6 +14,7 @@ CREATE TABLE personnel (
 -- seed two users into personnel table
 INSERT INTO personnel (first_name, last_name, password, email, contact, diet) VALUES ('Kim', 'Lee', '$2b$12$/EXwTNh77KPqUlV59oksJe5yf9wiIrX28RrPnlcJ1s7vcjxtxtVaO', 'kim@abc.com', '87654321', 'LACTOSE-INTOLERANT');
 INSERT INTO personnel (first_name, last_name, password, email, contact, diet) VALUES ('Kris', 'Teo', '$2b$12$/EXwTNh77KPqUlV59oksJe5yf9wiIrX28RrPnlcJ1s7vcjxtxtVaO', 'kris@abc.com', '98765432', 'VEGETARIAN');
+INSERT INTO personnel (first_name, last_name, password, email, contact, diet) VALUES ('Sam', 'Tan', '$2b$12$/EXwTNh77KPqUlV59oksJe5yf9wiIrX28RrPnlcJ1s7vcjxtxtVaO', 'sam@abc.com', '91119111', 'NONE');
 
 
 -- create diets table
@@ -35,7 +36,7 @@ SELECT * FROM personnel;
 
 -- create events 
 CREATE TABLE events (
-	event_id SERIAL PRIMARY KEY,
+	event_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
 	title VARCHAR(100),
 	date DATE,
 	time TIME,
@@ -50,13 +51,13 @@ SELECT * FROM events;
 
 
 -- seed two events into events table
-INSERT INTO events (title, date, time, address, response_deadline, host_id) VALUES ('Wedding', '2024-11-11', '13:00:00.00', 'ABC Ave, Level 2', '2024-10-05', 1);
-INSERT INTO events (title, date, time, address, response_deadline, host_id) VALUES ('Baby Shower for Noel', '2024-12-24', '17:00:00.00', '30 ABC Ave, Level 1', '2024-12-10', 2);
+INSERT INTO events (title, date, time, address, response_deadline, host_id) VALUES ('Wedding', '2024-11-11', '13:00', 'ABC Ave, Level 2', '2024-10-05', 1);
+INSERT INTO events (title, date, time, address, response_deadline, host_id) VALUES ('Baby Shower for Noel', '2024-12-24', '17:00', '30 ABC Ave, Level 1', '2024-12-10', 2);
 
 
 -- create event_guests table
 CREATE TABLE event_guests (
-	event_id int,
+	event_id uuid,
 	guest_id int,
 	diet VARCHAR(50) NOT NULL,
 	is_attending BOOLEAN,
@@ -69,13 +70,13 @@ CREATE TABLE event_guests (
 SELECT * FROM event_guests;
 
 -- seed one RSVP into event_guests table
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (1, 3, 'VEGETARIAN', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (1, 2, 'LACTOSE-INTOLERANT', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (2, 1, 'NONE', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (4, 3, 'VEGETARIAN', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (5, 1, 'NONE', FALSE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (5, 2, 'LACTOSE-INTOLERANT', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES (5, 3, 'VEGETARIAN', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('826cd06c-f862-4b59-844e-bd16ec6f4492', 1, 'LACTOSE-INTOLERANT', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('aaec1771-4da6-4d3e-968d-6429dceb1459', 2, 'VEGETARIAN', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('aaec1771-4da6-4d3e-968d-6429dceb1459', 3, 'NONE', FALSE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('7ef6d126-c8b7-465d-8f4a-ac1cbd557398', 1, 'NONE', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('7ef6d126-c8b7-465d-8f4a-ac1cbd557398', 2, 'NONE', TRUE);
+INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('7ef6d126-c8b7-465d-8f4a-ac1cbd557398', 3, 'NONE', FALSE);
+
 
 
 -- join events <> event_guests <> personnel table to get event name and associate guestlist
@@ -85,23 +86,22 @@ INNER JOIN event_guests eg
 ON e.event_id = eg.event_id
 INNER JOIN personnel p
 ON p.personnel_id = eg.guest_id
-WHERE e.host_id = 12
+WHERE e.host_id = 2 AND e.event_id = 'aaec1771-4da6-4d3e-968d-6429dceb1459'
 ORDER BY eg.is_attending DESC;
 
 -- sample update guest attendance via event_guests table
 UPDATE event_guests
-	SET is_attending = false
-	WHERE event_id = 5 AND guest_id = 2;
+	SET is_attending = TRUE
+	WHERE event_id = 'aaec1771-4da6-4d3e-968d-6429dceb1459' AND guest_id = 3;
 
 -- sample update guest information via personnel table
 UPDATE personnel
-	SET first_name = 'Kristi', diet = 'NONE'
-	WHERE personnel_id = 3;
+	SET email = 'kim.lee@abc.com', diet = 'NONE'
+	WHERE personnel_id = 1;
 
 -- sample delete guest from guestlist
 DELETE FROM event_guests
-	WHERE event_id = 1 AND guest_id = 2;
-
+	WHERE event_id = 'aaec1771-4da6-4d3e-968d-6429dceb1459' AND guest_id = 3;
 
 
 ---------------------------------------------------------------------------------------------------------
