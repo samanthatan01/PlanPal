@@ -8,7 +8,7 @@ const getGuestlist = async (req, res) => {
 
     const loggedInUserId = req.decoded.id;
     // get event WHERE event_id in req.params AND host_id = req.decoded.id
-    const event_id = parseInt(req.params.id);
+    const event_id = req.params.id;
 
     const guestlist = await client.query(
       "SELECT e.event_id, e.host_id, eg.guest_id, p.first_name, p.last_name, p.email, p.contact, eg.is_attending, eg.diet FROM events e INNER JOIN event_guests eg ON e.event_id = eg.event_id INNER JOIN personnel p ON p.personnel_id = eg.guest_id WHERE e.event_id = $1 AND e.host_id = $2",
