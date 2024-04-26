@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 const auth = require("./src/routers/auth");
 const events = require("./src/routers/events");
 const guestlists = require("./src/routers/guestlists");
+const rsvp = require("./src/routers/rsvp");
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/auth", auth);
 app.use("/events", events);
 app.use("/guestlist", guestlists);
+app.use("/rsvp", rsvp);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
