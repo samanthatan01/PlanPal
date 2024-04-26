@@ -86,7 +86,7 @@ INNER JOIN event_guests eg
 ON e.event_id = eg.event_id
 INNER JOIN personnel p
 ON p.personnel_id = eg.guest_id
-WHERE e.host_id = 2 AND e.event_id = 'aaec1771-4da6-4d3e-968d-6429dceb1459'
+WHERE e.host_id = 1 AND e.event_id = '826cd06c-f862-4b59-844e-bd16ec6f4492'
 ORDER BY eg.is_attending DESC;
 
 -- sample update guest attendance via event_guests table
@@ -102,6 +102,16 @@ UPDATE personnel
 -- sample delete guest from guestlist
 DELETE FROM event_guests
 	WHERE event_id = 'aaec1771-4da6-4d3e-968d-6429dceb1459' AND guest_id = 3;
+
+-- get all events that the user has rsvp for
+SELECT e.event_id, e.title, e.date, e.time, e.address, e.host_id, eg.is_attending, eg.diet
+FROM events e
+INNER JOIN event_guests eg
+ON e.event_id = eg.event_id
+INNER JOIN personnel p
+ON p.personnel_id = eg.guest_id
+WHERE eg.guest_id = 1;
+
 
 
 ---------------------------------------------------------------------------------------------------------
