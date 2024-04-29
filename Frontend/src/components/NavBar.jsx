@@ -22,15 +22,13 @@ const NavBar = () => {
               marginRight: "2rem",
             }}
           >
-            <button className={styles.loginButton}>
-              <NavLink
-                style={{ textDecoration: "none", borderBottom: "none" }}
-                className={(navData) => (navData.isActive ? styles.active : "")}
-                to="/login"
-              >
-                Login
-              </NavLink>
-            </button>
+            <NavLink
+              style={{ textDecoration: "none", borderBottom: "none" }}
+              className={(navData) => (navData.isActive ? styles.active : "")}
+              to="/login"
+            >
+              <button className={styles.loginButton}>Login</button>
+            </NavLink>
 
             {/* --- uncomment only after accessToken is implemented --- */}
 
