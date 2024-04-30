@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Main = () => {
   return (
     <>
+      <div className={styles.layer}></div>
       <div className={styles.container}>
         <div className="col-md-3"></div>
         <div className={`col-md-6 ${styles.header}`}>
