@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import useFetch from "../hooks/useFetch";
+import UserContext from "../context/user";
 import styles from "../components/Auth.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
+  const fetchData = useFetch();
+
+  const userCtx = useContext(UserContext);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    const res = await fetchData("/auth/login", "POST", {
+      email: email,
+      password: password,
+    });
+
+    if (res.ok) {
+      // get access and refresh token from response
+      userCtx.setAccessToken(res.data.access); // set access token
+
+      const decoded = jwtDecode(res.data.access); // decode the claims
+      userCtx.setLoggedInUserId(decoded.id); // set logged in user id
+      navigate("/dashboard");
+    } else {
+      alert(JSON.stringify(res.data));
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -11,32 +39,37 @@ const Login = () => {
           <h3>Sign In</h3>
           <br />
           <div className={`${styles.fields}`}>
-            <label className="col-md-3">EMAIL</label>
+            <label className="col-md-3"></label>
 
             <input
               className="col-sm-6"
               placeholder="Enter email address"
-            ></input>
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
-
-          <div className={`${styles.fields}`}>
-            <label className="col-sm-3">PASSWORD</label>
-
-            <input className="col-sm-6" placeholder="Enter password"></input>
-          </div>
-          <br />
-
           <div className={`${styles.fields}`}>
             <label className="col-sm-3"></label>
-            <NavLink
-              style={{ textDecoration: "none", borderBottom: "none" }}
-              className={(navData) => (navData.isActive ? styles.active : "")}
-              to="/dashboard"
-            >
-              <button className={`col-sm-6 ${styles.Button}`}>Log In</button>
-            </NavLink>
+
+            <input
+              type="password"
+              className="col-sm-6"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
 
+          <br />
+          <div className={`${styles.fields}`}>
+            <label className="col-sm-3" />
+            <button
+              className={`col-sm-6 ${styles.Button}`}
+              onClick={() => handleLogin()}
+            >
+              Log In
+            </button>
+          </div>
           <br />
           <div className={`${styles.register}`}>
             <NavLink
