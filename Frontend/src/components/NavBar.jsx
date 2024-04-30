@@ -1,49 +1,55 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./NavBar.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import UserContext from "../context/user";
 
 const NavBar = () => {
+  const userCtx = useContext(UserContext);
+  const navigate = useNavigate();
+  let location = useLocation();
+
   return (
     <header className={styles.navbar}>
       <nav>
         <ul>
           <li>
-            <NavLink
-              style={{ textDecoration: "none", borderBottom: "none" }}
-              className={(navData) => (navData.isActive ? styles.active : "")}
-              to="/main"
-            >
-              <h1>PlanPal.</h1>
-            </NavLink>
+            <h1>PlanPal.</h1>
           </li>
+
+          {/* -----TO BE DELETED----- */}
+          {userCtx.loggedInUserId}
+          {/* -----TO BE DELETED----- */}
+
           <li
             style={{
               marginLeft: "auto",
               marginRight: "2rem",
             }}
           >
-            <NavLink
-              style={{ textDecoration: "none", borderBottom: "none" }}
-              className={(navData) => (navData.isActive ? styles.active : "")}
-              to="/login"
-            >
-              <button className={styles.loginButton}>Login</button>
-            </NavLink>
-
-            {/* --- uncomment only after accessToken is implemented --- */}
-
-            {/* {!userCtx.accessToken ? (
-              <button
-                className={styles.loginButton}
-                onClick={handleOpenLoginModal}
+            {!userCtx.accessToken ? (
+              <NavLink
+                style={{ textDecoration: "none", borderBottom: "none" }}
+                className={(navData) => (navData.isActive ? styles.active : "")}
+                to="/login"
               >
-                Login <LockOpenOutlinedIcon />
-              </button>
+                <button className={styles.loginButton}>Login</button>
+              </NavLink>
             ) : (
-              <button className={styles.logoutButton} onClick={handleLogout}>
-                Logout <ExitToAppOutlinedIcon />
-              </button>
-            )} */}
+              <NavLink
+                style={{ textDecoration: "none", borderBottom: "none" }}
+                className={(navData) => (navData.isActive ? styles.active : "")}
+                to="/main"
+              >
+                <button
+                  className={styles.loginButton}
+                  onClick={() =>
+                    userCtx.setAccessToken("") && navigate("/main")
+                  }
+                >
+                  Log Out
+                </button>
+              </NavLink>
+            )}
           </li>
         </ul>
       </nav>
