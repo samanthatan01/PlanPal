@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./SideBar.module.css";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const SideBar = () => {
+  let location = useLocation();
+
   return (
     <>
       <Sidebar className={styles.SideBar}>
@@ -11,7 +13,14 @@ const SideBar = () => {
           <Link to="/dashboard" className={styles.l1}>
             <MenuItem>Home</MenuItem>
           </Link>
-          <SubMenu label="As a Host" className={styles.l1}>
+          <SubMenu
+            label="As a Host"
+            className={styles.l1}
+            defaultOpen={
+              location.pathname.startsWith("/create") ||
+              location.pathname.startsWith("/all")
+            }
+          >
             <Link to="/create" className={styles.l2}>
               <MenuItem>Host New Event</MenuItem>
             </Link>
@@ -20,7 +29,14 @@ const SideBar = () => {
             </Link>
           </SubMenu>
 
-          <SubMenu label="As a Guest" className={styles.l1}>
+          <SubMenu
+            label="As a Guest"
+            className={styles.l1}
+            defaultOpen={
+              location.pathname.startsWith("/respond") ||
+              location.pathname.startsWith("/upcoming")
+            }
+          >
             <Link to="/respond" className={styles.l2}>
               <MenuItem>Send RSVP</MenuItem>
             </Link>
