@@ -13,7 +13,13 @@ const NavBar = () => {
       <nav>
         <ul>
           <li>
-            <h1>PlanPal.</h1>
+            <NavLink
+              style={{ textDecoration: "none", borderBottom: "none" }}
+              className={(navData) => (navData.isActive ? styles.active : "")}
+              to="/main"
+            >
+              <h1>PlanPal.</h1>
+            </NavLink>
           </li>
 
           {/* -----TO BE DELETED----- */}
