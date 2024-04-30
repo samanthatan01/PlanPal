@@ -17,6 +17,14 @@ h3 {
   letter-spacing: 0px;
 }
 
+input {
+  border-color: none;
+  border-style: none;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #424874;
+}
+
 .text {
   text-align: center;
   font-weight: 400;
