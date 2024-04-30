@@ -22,7 +22,6 @@ const Login = () => {
     if (res.ok) {
       // get access and refresh token from response
       userCtx.setAccessToken(res.data.access); // set access token
-
       const decoded = jwtDecode(res.data.access); // decode the claims
       userCtx.setLoggedInUserId(decoded.id); // set logged in user id
       navigate("/dashboard");
