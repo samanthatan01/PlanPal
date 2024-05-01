@@ -71,15 +71,18 @@ const Login = () => {
           </div>
           <br />
           <div className={`${styles.register}`}>
+            <div className="col-sm-3"></div>
             <NavLink
               style={{ textDecoration: "none", borderBottom: "none" }}
               className={(navData) => (navData.isActive ? styles.active : "")}
               to="/register"
             >
-              <label className="col-sm-12">
-                Don't have an account yet? Register for one today.
+              <label className={`col-sm-6 `}>
+                Don't have an account yet? <br />
+                Register for one today.
               </label>
             </NavLink>
+            <div className="col-sm-3"></div>
           </div>
           <br />
         </div>
