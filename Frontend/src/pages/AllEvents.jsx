@@ -5,25 +5,46 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../context/user";
 import EventListing from "../components/EventListing";
+import useFetch from "../hooks/useFetch";
 
 const AllEvents = () => {
   const navigate = useNavigate();
+  const fetchData = useFetch();
+
   const userCtx = useContext(UserContext);
   const [allEvents, setAllEvents] = useState([]);
 
+  // const getAllEvents = async () => {
+  //   const res = await fetch(import.meta.env.VITE_SERVER + "/events/all", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + userCtx.accessToken,
+  //     },
+  //   });
+  //   const data = await res.json();
+  //   console.log(data);
+
+  //   if (res.ok) {
+  //     setAllEvents(data);
+  //   } else {
+  //     alert(JSON.stringify(res.data));
+  //   }
+  // };
+
   const getAllEvents = async () => {
-    const res = await fetch(import.meta.env.VITE_SERVER + "/events/all", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + userCtx.accessToken,
+    const res = await fetchData(
+      "/events/all",
+      "POST",
+      {
+        is_active: true,
       },
-    });
-    const data = await res.json();
-    console.log(data);
+      userCtx.accessToken
+    );
 
     if (res.ok) {
-      setAllEvents(data);
+      setAllEvents(res.data);
+      navigate("/all");
     } else {
       alert(JSON.stringify(res.data));
     }
@@ -53,6 +74,9 @@ const AllEvents = () => {
                       date={item.date}
                       time={item.time}
                       address={item.address}
+                      deadline={item.response_deadline}
+                      status={item.is_active}
+                      getAllEvents={getAllEvents}
                     />
                   );
                 })}
