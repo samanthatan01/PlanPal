@@ -50,8 +50,8 @@ const CreateNewEvent = () => {
 
         <main style={{ flexGrow: 1, padding: "40px" }}>
           <div className={`${styles.container}`}>
-            <div className="col-sm-3"></div>
-            <div className={`col-sm-6 `}>
+            <div className="col-sm-2"></div>
+            <div className={`col-sm-8 `}>
               <a className={`${styles.header}`}>Host a New Event</a>
               <br />
               <br />
@@ -113,7 +113,7 @@ const CreateNewEvent = () => {
                 Create
               </button>
             </div>
-            <div className="col-sm-3"></div>
+            <div className="col-sm-2"></div>
           </div>
         </main>
       </div>
