@@ -9,7 +9,7 @@ const validateIdInParam = [
 // validateResponseInput - body(diet, is_attending)
 const validateResponseInput = [
   body("is_attending", "is_attending is required").not().isEmpty(),
-  body("is_attending", "is_attending must be boolean").isBoolean(),
+  // body("is_attending", "is_attending must be boolean").isBoolean(),
   body("diet", "dietary preference is required").not().isEmpty(),
 ];
 
