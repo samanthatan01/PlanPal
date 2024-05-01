@@ -33,14 +33,13 @@ input {
   letter-spacing: 0;
 }
 
-.fields {
-  margin-top: 10px;
+.register {
+  text-decoration: none;
+  text-align: center;
 }
 
-.register {
+.fields {
   margin-top: 10px;
-  text-align: center;
-  font-weight: 400;
 }
 
 .Button {

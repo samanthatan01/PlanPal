@@ -19,6 +19,13 @@
   width: 7rem;
 }
 
+.navbar h1 {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 28px;
+  margin-top: 4px;
+}
+
 .navbar a {
   color: #424874;
   text-decoration: none;
