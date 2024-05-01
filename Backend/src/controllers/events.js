@@ -45,6 +45,7 @@ const getEventById = async (req, res) => {
   try {
     const client = await pool.connect();
     const event_id = req.params.id;
+
     const event = await client.query(
       "SELECT * FROM events WHERE event_id = ($1)",
       [event_id]
