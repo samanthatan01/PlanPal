@@ -26,6 +26,7 @@ input {
   border-radius: 4px;
   background-color: #ffffff;
   color: #424874;
+  min-height: 36px;
 }
 
 .Button {
