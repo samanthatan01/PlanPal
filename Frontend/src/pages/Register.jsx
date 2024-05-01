@@ -128,15 +128,18 @@ const Register = () => {
 
           <br />
           <div className={`${styles.register}`}>
+            <div className="col-sm-3"></div>
             <NavLink
               style={{ textDecoration: "none", borderBottom: "none" }}
               className={(navData) => (navData.isActive ? styles.active : "")}
               to="/login"
             >
-              <label className="col-sm-12">
-                Already have an account? Log in to get started.
+              <label className={`col-sm-6 `}>
+                Already have an account? <br />
+                Log in to get started.
               </label>
             </NavLink>
+            <div className="col-sm-3"></div>
           </div>
 
           <br />
