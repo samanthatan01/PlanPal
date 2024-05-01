@@ -17,7 +17,7 @@ const { errorCheck } = require("../validators/errorCheck");
 const router = express.Router();
 
 router.put("/create", user, validateEventInput, errorCheck, createEvent);
-router.get("/all", user, getAllEventsHostedByUser);
+router.post("/all", user, getAllEventsHostedByUser);
 router.get("/:id", user, validateIdInParam, errorCheck, getEventById);
 router.patch(
   "/update/:id",

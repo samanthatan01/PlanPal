@@ -26,9 +26,10 @@ const getAllEventsHostedByUser = async (req, res) => {
   try {
     const client = await pool.connect();
     const host_id = req.decoded.id;
+    const { is_active } = req.body;
     const eventsCreated = await client.query(
-      "SELECT * FROM events WHERE host_id = ($1)",
-      [host_id]
+      "SELECT * FROM events WHERE host_id = ($1) AND is_active = ($2) ",
+      [host_id, is_active]
     );
     client.release();
     // console.log(eventsCreated);
