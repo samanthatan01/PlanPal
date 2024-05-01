@@ -14,24 +14,6 @@ const AllEvents = () => {
   const userCtx = useContext(UserContext);
   const [allEvents, setAllEvents] = useState([]);
 
-  // const getAllEvents = async () => {
-  //   const res = await fetch(import.meta.env.VITE_SERVER + "/events/all", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + userCtx.accessToken,
-  //     },
-  //   });
-  //   const data = await res.json();
-  //   console.log(data);
-
-  //   if (res.ok) {
-  //     setAllEvents(data);
-  //   } else {
-  //     alert(JSON.stringify(res.data));
-  //   }
-  // };
-
   const getAllEvents = async () => {
     const res = await fetchData(
       "/events/all",
