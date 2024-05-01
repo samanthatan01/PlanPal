@@ -37,7 +37,7 @@ function App() {
           <Route path="main" element={<Main />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="event" element={<Event />} />
+          <Route path="events/:id" element={<Event />} />
           <Route path="*" element={<NotFound />} />
 
           {/* pages with sidebar */}
