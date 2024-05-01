@@ -10,9 +10,11 @@ const submitResponse = async (req, res) => {
     const event_id = req.params.id;
     const guest_id = req.decoded.id;
     const { diet, is_attending } = req.body;
+    console.log(is_attending);
 
     await client.query(
-      "INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ($1, $2, $3, $4)",
+      // "INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ($1, $2, $3, $4)",
+      "INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ($1, $2, $3, $4) ON CONFLICT(event_id,guest_id)  DO UPDATE SET diet = EXCLUDED.diet, is_attending = EXCLUDED.is_attending",
       [event_id, guest_id, diet, is_attending]
     );
     client.release();
