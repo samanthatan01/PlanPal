@@ -56,6 +56,7 @@ const CreateNewEvent = () => {
               <br />
               <br />
               <label className={`col-sm-4`}>Title</label>
+              <br />
               <input
                 className={`col-sm-8`}
                 placeholder="Enter event title"
@@ -65,6 +66,7 @@ const CreateNewEvent = () => {
               <br />
               <br />
               <label className={`col-sm-4`}>Date</label>
+              <br />
               <input
                 type="date"
                 className={`col-sm-8`}
@@ -75,6 +77,7 @@ const CreateNewEvent = () => {
               <br />
               <br />
               <label className={`col-sm-4`}>Time</label>
+              <br />
               <input
                 type="time"
                 className={`col-sm-8`}
@@ -85,6 +88,7 @@ const CreateNewEvent = () => {
               <br />
               <br />
               <label className={`col-sm-4`}>Address</label>
+              <br />
               <input
                 className={`col-sm-8`}
                 placeholder="Enter location of event"
@@ -94,6 +98,7 @@ const CreateNewEvent = () => {
               <br />
               <br />
               <label className={`col-sm-4`}>Response Deadline</label>
+              <br />
               <input
                 type="date"
                 className={`col-sm-8`}
