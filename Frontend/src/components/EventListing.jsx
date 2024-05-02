@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../components/Events.module.css";
 import UpdateModal from "./UpdateModal";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../context/user";
 
 const EventListing = (props) => {
   const navigate = useNavigate();
+  const userCtx = useContext(UserContext);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   return (
     <>
@@ -21,7 +23,67 @@ const EventListing = (props) => {
           setShowUpdateModal={setShowUpdateModal}
         />
       )}
-      <div className={`${styles.box}`}>
+
+      {userCtx.loggedInId != props.hostId ? (
+        <div className={`${styles.box}`}>
+          <h3>{props.title}</h3>
+          <p>{props.date}</p>
+          <p>{props.time}</p>
+          <p>{props.address}</p>
+          <p>
+            {props.status ? (
+              <div>
+                <strong>RSVP:</strong>
+                <br />
+                Will Be There
+              </div>
+            ) : (
+              <div>
+                <strong>RSVP:</strong>
+                <br />
+                Unable To Attend
+              </div>
+            )}
+          </p>
+          <p>
+            <div>
+              <strong>Chosen Diet:</strong>
+              <br />
+              {props.diet}
+            </div>
+          </p>
+          <Link to={`/events/${props.id}`}>
+            <button className={`${styles.btn}`}>UPDATE RSVP</button>
+          </Link>
+          <br />
+        </div>
+      ) : (
+        <div className={`${styles.box}`}>
+          <h3>{props.title}</h3>
+          <p>{props.date}</p>
+          <p>{props.time}</p>
+          <p>{props.address}</p>
+          <p>
+            <strong>Copy Code To Share Event:</strong>
+            <br />
+            {props.id}
+          </p>
+          <Link to={`/events/${props.id}`}>
+            <button className={`${styles.btn}`}>VIEW EVENT</button>
+          </Link>
+          <br />
+          <button className={`${styles.btn}`}>ALL GUESTS</button>
+          <br />
+          <button
+            className={`${styles.btn}`}
+            onClick={() => setShowUpdateModal(true)}
+          >
+            UPDATE INFO
+          </button>
+          <br />
+        </div>
+      )}
+      {/* <div className={`${styles.box}`}>
         <h3>{props.title}</h3>
         <p>{props.date}</p>
         <p>{props.time}</p>
@@ -30,7 +92,6 @@ const EventListing = (props) => {
           <button className={`${styles.btn}`}>VIEW EVENT</button>
         </Link>
         <br />
-
         <button className={`${styles.btn}`}>ALL GUESTS</button>
         <br />
         <button
@@ -40,7 +101,7 @@ const EventListing = (props) => {
           UPDATE INFO
         </button>
         <br />
-      </div>
+      </div> */}
     </>
   );
 };
