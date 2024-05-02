@@ -50,11 +50,6 @@ CREATE TABLE events (
 SELECT * FROM events;
 
 
--- seed two events into events table
-INSERT INTO events (title, date, time, address, response_deadline, host_id) VALUES ('Wedding', '2024-11-11', '13:00', 'ABC Ave, Level 2', '2024-10-05', 1);
-INSERT INTO events (title, date, time, address, response_deadline, host_id) VALUES ('Baby Shower for Noel', '2024-12-24', '17:00', '30 ABC Ave, Level 1', '2024-12-10', 2);
-
-
 -- create event_guests table
 CREATE TABLE event_guests (
 	event_id uuid,
@@ -68,14 +63,6 @@ CREATE TABLE event_guests (
 );
 
 SELECT * FROM event_guests;
-
--- seed one RSVP into event_guests table
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('826cd06c-f862-4b59-844e-bd16ec6f4492', 1, 'LACTOSE-INTOLERANT', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('aaec1771-4da6-4d3e-968d-6429dceb1459', 2, 'VEGETARIAN', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('aaec1771-4da6-4d3e-968d-6429dceb1459', 3, 'NONE', FALSE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('7ef6d126-c8b7-465d-8f4a-ac1cbd557398', 1, 'NONE', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('7ef6d126-c8b7-465d-8f4a-ac1cbd557398', 2, 'NONE', TRUE);
-INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ('7ef6d126-c8b7-465d-8f4a-ac1cbd557398', 3, 'NONE', FALSE);
 
 
 
@@ -103,6 +90,7 @@ UPDATE personnel
 DELETE FROM event_guests
 	WHERE event_id = 'aaec1771-4da6-4d3e-968d-6429dceb1459' AND guest_id = 3;
 
+
 -- get all events that the user has rsvp for
 SELECT e.event_id, e.title, e.date, e.time, e.address, e.host_id, eg.is_attending, eg.diet
 FROM events e
@@ -110,12 +98,5 @@ INNER JOIN event_guests eg
 ON e.event_id = eg.event_id
 INNER JOIN personnel p
 ON p.personnel_id = eg.guest_id
-WHERE eg.guest_id = 1;
+WHERE eg.guest_id = 1 AND e.is_active = true;
 
-
-
----------------------------------------------------------------------------------------------------------
--- drop table diets;
--- drop table personnel;
--- drop table events;
--- drop table event_guests;
