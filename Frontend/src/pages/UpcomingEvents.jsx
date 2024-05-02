@@ -21,7 +21,7 @@ const UpcomingEvents = () => {
       {
         is_active: true,
       },
-      userCtx.accessToken
+      localStorage.getItem("access")
     );
 
     if (res.ok) {
@@ -54,7 +54,6 @@ const UpcomingEvents = () => {
               <br />
               <br />
               <div className={styles["box-container"]}>
-                {/* {JSON.stringify(userEvents)} */}
                 {userEvents.map((item) => {
                   return (
                     <EventListing

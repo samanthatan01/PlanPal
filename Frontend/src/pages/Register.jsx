@@ -91,6 +91,7 @@ const Register = () => {
           <div className={`${styles.field}`}>
             <div className={styles.wrapper}>
               <input
+                type="password"
                 className="col-sm-12"
                 placeholder="Enter password"
                 value={password}

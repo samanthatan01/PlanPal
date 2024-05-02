@@ -22,7 +22,7 @@ const AllEvents = () => {
       {
         is_active: true,
       },
-      userCtx.accessToken
+      localStorage.getItem("access")
     );
 
     if (res.ok) {
@@ -38,10 +38,10 @@ const AllEvents = () => {
       userCtx.setAccessToken(localStorage.getItem("access"));
       const decoded = jwtDecode(localStorage.getItem("access"));
       userCtx.setLoggedInUserId(decoded.id);
+      getAllEvents();
     } else {
       navigate("/login");
     }
-    getAllEvents();
   }, []);
 
   return (

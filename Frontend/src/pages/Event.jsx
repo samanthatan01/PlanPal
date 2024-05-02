@@ -23,7 +23,7 @@ const Event = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + userCtx.accessToken,
+        Authorization: "Bearer " + localStorage.getItem("access"),
       },
     });
     const data = await res.json();
