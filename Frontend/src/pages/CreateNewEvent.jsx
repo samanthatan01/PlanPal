@@ -66,59 +66,74 @@ const CreateNewEvent = () => {
             <div className={`col-sm-8 `}>
               <a className={`${styles.header}`}>Host a New Event</a>
               <br />
-              <br />
+
               <label className={`col-sm-4`}>Title</label>
+              <div className={styles.field}>
+                <div className={styles.wrapper}>
+                  <input
+                    className={`col-sm-8 ${styles.searchbar}`}
+                    placeholder="Enter event title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  ></input>
+                </div>
+              </div>
+              <br />
 
-              <input
-                className={`col-sm-8`}
-                placeholder="Enter event title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              ></input>
-              <br />
-              <br />
               <label className={`col-sm-4`}>Date</label>
+              <div className={styles.field}>
+                <div className={styles.wrapper}>
+                  <input
+                    type="date"
+                    className={`col-sm-8 ${styles.searchbar}`}
+                    placeholder="Enter date of event"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  ></input>
+                </div>
+              </div>
+              <br />
 
-              <input
-                type="date"
-                className={`col-sm-8`}
-                placeholder="Enter date of event"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-              ></input>
-              <br />
-              <br />
               <label className={`col-sm-4`}>Time</label>
+              <div className={styles.field}>
+                <div className={styles.wrapper}>
+                  <input
+                    type="time"
+                    className={`col-sm-8 ${styles.searchbar}`}
+                    placeholder="Enter time of event"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                  ></input>
+                </div>
+              </div>
 
-              <input
-                type="time"
-                className={`col-sm-8`}
-                placeholder="Enter time of event"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-              ></input>
-              <br />
               <br />
               <label className={`col-sm-4`}>Address</label>
+              <div className={styles.field}>
+                <div className={styles.wrapper}>
+                  <input
+                    className={`col-sm-8 ${styles.searchbar}`}
+                    placeholder="Enter location of event"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  ></input>
+                </div>
+              </div>
 
-              <input
-                className={`col-sm-8`}
-                placeholder="Enter location of event"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              ></input>
-              <br />
               <br />
               <label className={`col-sm-4`}>Response Deadline</label>
+              <div className={styles.field}>
+                <div className={styles.wrapper}>
+                  <input
+                    type="date"
+                    className={`col-sm-8 ${styles.searchbar}`}
+                    value={deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                  ></input>
+                </div>
+              </div>
+              <br />
 
-              <input
-                type="date"
-                className={`col-sm-8`}
-                value={deadline}
-                onChange={(e) => setDeadline(e.target.value)}
-              ></input>
-              <br />
-              <br />
               <label
                 className={`col-sm-8`}
                 placeholder="Enter response deadline"
