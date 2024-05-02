@@ -46,7 +46,7 @@ function App() {
           <Route path="all" element={<AllEvents />} />
           <Route path="respond" element={<Response />} />
           <Route path="upcoming" element={<UpcomingEvents />} />
-          <Route path="guestlist" element={<Guestlist />} />
+          <Route path="guestlist/:id" element={<Guestlist />} />
         </Routes>
       </UserContext.Provider>
     </>
