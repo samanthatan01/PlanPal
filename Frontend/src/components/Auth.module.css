@@ -34,18 +34,21 @@ input {
 }
 
 .register {
-  text-decoration: none;
+  margin: 1rem auto;
+  font-weight: 300;
+  font-size: 16px;
+  color: #717387;
   text-align: center;
-}
-
-.fields {
-  margin-top: 10px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .Button {
   align-items: center;
   appearance: none;
-  border-radius: 4px;
+  border-radius: 10px;
   border-style: none;
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 1px -2px, rgba(0, 0, 0, 0.14) 0 2px 2px 0,
     rgba(0, 0, 0, 0.12) 0 1px 5px 0;
@@ -61,7 +64,7 @@ input {
   justify-content: center;
   letter-spacing: 0.0892857em;
   line-height: normal;
-  min-width: 112px;
+  max-width: 200px;
   outline: none;
   overflow: visible;
   padding: 0 16px;
@@ -82,4 +85,34 @@ input {
     rgba(0, 0, 0, 0.12) 0 1px 10px 0;
   color: #a6b1e1;
   background-color: #424874;
+}
+
+.wrapper {
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  height: 2.5rem;
+  padding: 0 15px;
+  box-shadow: 0px 0px 8px #ddd;
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.searchbar {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  font-size: 1rem;
+  width: 100%;
+  margin-left: 5px;
+}
+
+.searchbar:focus {
+  outline: none;
+}
+
+.field {
+  margin-right: 20%;
+  margin-left: 20%;
 }
