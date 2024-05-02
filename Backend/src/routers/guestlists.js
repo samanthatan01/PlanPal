@@ -38,8 +38,8 @@ router.patch(
 router.delete(
   "/delete-guest",
   user,
-  validateIdInBody,
-  validateRemoveGuest,
+  // validateIdInBody,
+  // validateRemoveGuest,
   errorCheck,
   deleteGuestFromEvent
 );

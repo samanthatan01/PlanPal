@@ -20,7 +20,7 @@ const getGuestlist = async (req, res) => {
     if (guestlist.rows.length === 0) {
       return res
         .status(401)
-        .json({ status: "error", msg: "unauthorised user" });
+        .json({ status: "error", msg: "guestlist unavailable" });
     }
     res.status(200).json(guestlist.rows);
   } catch (error) {
