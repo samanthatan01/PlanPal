@@ -21,7 +21,7 @@ const Response = () => {
           <>
             <div>
               <br />
-              <strong> SEARCH FOR EVENT TO RSVP</strong>
+              <strong> ENTER EVENT CODE TO RSVP</strong>
             </div>
             <div className={`${styles.wrapper}`}>
               <input
