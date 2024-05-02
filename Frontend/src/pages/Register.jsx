@@ -44,86 +44,87 @@ const Register = () => {
         <div className={`col-md-6 ${styles.header}`}>
           <h3>Sign Up</h3>
           <br />
-          <div className={`${styles.fields}`}>
-            <label className="col-md-3"></label>
-
-            <input
-              className="col-sm-6"
-              placeholder="Enter first name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            ></input>
+          <div className={`${styles.field}`}>
+            <div className={styles.wrapper}>
+              <input
+                className="col-sm-12"
+                placeholder="Enter first name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              ></input>
+            </div>
           </div>
 
-          <div className={`${styles.fields}`}>
-            <label className="col-md-3"></label>
-
-            <input
-              className="col-sm-6"
-              placeholder="Enter last name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            ></input>
+          <div className={`${styles.field}`}>
+            <div className={styles.wrapper}>
+              <input
+                className="col-sm-12"
+                placeholder="Enter last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              ></input>
+            </div>
           </div>
 
-          <div className={`${styles.fields}`}>
-            <label className="col-md-3"></label>
-
-            <input
-              className="col-sm-6"
-              placeholder="Enter contact"
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
-            ></input>
+          <div className={`${styles.field}`}>
+            <div className={styles.wrapper}>
+              <input
+                className="col-sm-12"
+                placeholder="Enter contact"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+              ></input>
+            </div>
           </div>
 
-          <div className={`${styles.fields}`}>
-            <label className="col-md-3"></label>
-
-            <input
-              className="col-sm-6"
-              placeholder="Enter email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></input>
+          <div className={`${styles.field}`}>
+            <div className={styles.wrapper}>
+              <input
+                className="col-sm-12"
+                placeholder="Enter email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
           </div>
 
-          <div className={`${styles.fields}`}>
-            <label className="col-sm-3"></label>
-
-            <input
-              className="col-sm-6"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></input>
+          <div className={`${styles.field}`}>
+            <div className={styles.wrapper}>
+              <input
+                className="col-sm-12"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
           </div>
 
-          <div className={`${styles.fields}`}>
-            <label className="col-md-3"></label>
-
-            <select
-              className="col-sm-6"
-              value={diet}
-              onChange={(e) => setDiet(e.target.value)}
-            >
-              <option>Please select your diet</option>
-              <option>NONE</option>
-              <option>VEGETARIAN</option>
-              <option>HALAL</option>
-              <option>LACTOSE-INTOLERANT</option>
-            </select>
+          <div className={`${styles.field}`}>
+            <div className={styles.wrapper}>
+              <select
+                className="col-sm-12"
+                value={diet}
+                onChange={(e) => setDiet(e.target.value)}
+              >
+                <option>Please select your diet</option>
+                <option>NONE</option>
+                <option>VEGETARIAN</option>
+                <option>HALAL</option>
+                <option>LACTOSE-INTOLERANT</option>
+              </select>
+            </div>
           </div>
           <br />
 
-          <div className={`${styles.fields}`}>
-            <label className="col-sm-3"></label>
+          <div className={styles.field}>
+            <label className="col-sm-3" />
             <button
-              className={`col-sm-6 ${styles.Button}`}
+              className={`col-sm-12 ${styles.Button}`}
               onClick={() => registerUser()}
             >
               Register
             </button>
+            <label className="col-sm-3" />
           </div>
 
           <br />
@@ -134,10 +135,10 @@ const Register = () => {
               className={(navData) => (navData.isActive ? styles.active : "")}
               to="/login"
             >
-              <label className={`col-sm-6 `}>
+              <p className={`col-sm-6 ${styles.register} `}>
                 Already have an account? <br />
                 Log in to get started.
-              </label>
+              </p>
             </NavLink>
             <div className="col-sm-3"></div>
           </div>

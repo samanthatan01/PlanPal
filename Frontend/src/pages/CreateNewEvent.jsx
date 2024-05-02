@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import SideBar from "../components/SideBar";
 import styles from "../components/Events.module.css";
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../context/user";
+import { jwtDecode } from "jwt-decode";
 
 const CreateNewEvent = () => {
   const fetchData = useFetch();
@@ -43,6 +44,17 @@ const CreateNewEvent = () => {
       alert(JSON.stringify(res.data));
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("access")) {
+      userCtx.setAccessToken(localStorage.getItem("access"));
+      const decoded = jwtDecode(localStorage.getItem("access"));
+      userCtx.setLoggedInUserId(decoded.id);
+    } else {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <>
       <div style={{ display: "flex" }}>

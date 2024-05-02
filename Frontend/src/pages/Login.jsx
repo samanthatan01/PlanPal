@@ -22,6 +22,7 @@ const Login = () => {
     if (res.ok) {
       // get access and refresh token from response
       userCtx.setAccessToken(res.data.access); // set access token
+      localStorage.setItem("access", res.data.access);
       const decoded = jwtDecode(res.data.access); // decode the claims
       userCtx.setLoggedInUserId(decoded.id); // set logged in user id
       navigate("/dashboard");
@@ -32,35 +33,35 @@ const Login = () => {
 
   return (
     <>
-      <div className="container">
+      <div className={"container"}>
         <div className="col-md-3"></div>
         <div className={`col-md-6 ${styles.header}`}>
           <h3>Sign In</h3>
           <br />
-          <div className={`${styles.fields}`}>
-            <label className="col-md-3"></label>
-
-            <input
-              className="col-sm-6"
-              placeholder="Enter email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+          <div className={styles.field}>
+            <div className={styles.wrapper}>
+              <input
+                className={`col-sm-12 ${styles.searchbar}`}
+                placeholder="Enter email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
           </div>
-          <div className={`${styles.fields}`}>
-            <label className="col-sm-3"></label>
-
-            <input
-              type="password"
-              className="col-sm-6"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <div className={styles.field}>
+            <div className={styles.wrapper}>
+              <input
+                type="password"
+                className={`col-sm-12 ${styles.searchbar}`}
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
           </div>
 
           <br />
-          <div className={`${styles.fields}`}>
+          <div className={styles.field}>
             <label className="col-sm-3" />
             <button
               className={`col-sm-6 ${styles.Button}`}
@@ -68,6 +69,7 @@ const Login = () => {
             >
               Log In
             </button>
+            <label className="col-sm-3" />
           </div>
           <br />
           <div className={`${styles.register}`}>
@@ -77,10 +79,10 @@ const Login = () => {
               className={(navData) => (navData.isActive ? styles.active : "")}
               to="/register"
             >
-              <label className={`col-sm-6 `}>
+              <p className={`col-sm-6 ${styles.register}`}>
                 Don't have an account yet? <br />
                 Register for one today.
-              </label>
+              </p>
             </NavLink>
             <div className="col-sm-3"></div>
           </div>

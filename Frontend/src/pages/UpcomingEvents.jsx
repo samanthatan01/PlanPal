@@ -5,6 +5,7 @@ import UserContext from "../context/user";
 import styles from "../components/Events.module.css";
 import EventListing from "../components/EventListing";
 import useFetch from "../hooks/useFetch";
+import { jwtDecode } from "jwt-decode";
 
 const UpcomingEvents = () => {
   const navigate = useNavigate();
@@ -12,7 +13,6 @@ const UpcomingEvents = () => {
   const fetchData = useFetch();
 
   const [userEvents, setUserEvents] = useState([]);
-  // const id = userCtx.loggedInUserId;
 
   const getUserEvents = async () => {
     const res = await fetchData(
@@ -32,14 +32,21 @@ const UpcomingEvents = () => {
   };
 
   useEffect(() => {
-    getUserEvents();
+    if (localStorage.getItem("access")) {
+      userCtx.setAccessToken(localStorage.getItem("access"));
+      const decoded = jwtDecode(localStorage.getItem("access"));
+      userCtx.setLoggedInUserId(decoded.id);
+      getUserEvents();
+    } else {
+      navigate("/login");
+    }
   }, []);
 
   return (
     <>
       <div style={{ display: "flex" }}>
         <SideBar></SideBar>
-        <main style={{ flexGrow: 1, padding: "20px" }}>
+        <main style={{ flexGrow: 1, padding: "40px" }}>
           <div className={`${styles.container}`}>
             <div className="col-sm-1"></div>
             <div className={`col-sm-10`}>

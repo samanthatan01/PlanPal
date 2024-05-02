@@ -18,7 +18,8 @@ const SideBar = () => {
             className={styles.l1}
             defaultOpen={
               location.pathname.startsWith("/create") ||
-              location.pathname.startsWith("/all")
+              location.pathname.startsWith("/all") ||
+              location.pathname.startsWith("/guestlist")
             }
           >
             <Link to="/create" className={styles.l2}>
@@ -34,7 +35,8 @@ const SideBar = () => {
             className={styles.l1}
             defaultOpen={
               location.pathname.startsWith("/respond") ||
-              location.pathname.startsWith("/upcoming")
+              location.pathname.startsWith("/upcoming") ||
+              location.pathname.startsWith("/rsvp")
             }
           >
             <Link to="/respond" className={styles.l2}>

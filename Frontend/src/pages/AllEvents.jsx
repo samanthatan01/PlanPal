@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../context/user";
 import EventListing from "../components/EventListing";
 import useFetch from "../hooks/useFetch";
+import { jwtDecode } from "jwt-decode";
 
 const AllEvents = () => {
   const navigate = useNavigate();
@@ -33,6 +34,13 @@ const AllEvents = () => {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("access")) {
+      userCtx.setAccessToken(localStorage.getItem("access"));
+      const decoded = jwtDecode(localStorage.getItem("access"));
+      userCtx.setLoggedInUserId(decoded.id);
+    } else {
+      navigate("/login");
+    }
     getAllEvents();
   }, []);
 

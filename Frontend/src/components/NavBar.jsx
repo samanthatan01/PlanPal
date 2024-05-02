@@ -22,10 +22,6 @@ const NavBar = () => {
             </NavLink>
           </li>
 
-          {/* -----TO BE DELETED----- */}
-          {userCtx.loggedInUserId}
-          {/* -----TO BE DELETED----- */}
-
           <li
             style={{
               marginLeft: "auto",
@@ -48,9 +44,11 @@ const NavBar = () => {
               >
                 <button
                   className={styles.loginButton}
-                  onClick={() =>
-                    userCtx.setAccessToken("") && navigate("/main")
-                  }
+                  onClick={() => {
+                    localStorage.clear();
+                    userCtx.setAccessToken("");
+                    navigate("/main");
+                  }}
                 >
                   Log Out
                 </button>

@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UserContext from "../context/user";
 import styles from "../components/EventCard.module.css";
 import SideBar from "../components/SideBar";
 import useFetch from "../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 const Event = () => {
   const { id } = useParams();
@@ -53,12 +54,15 @@ const Event = () => {
   };
 
   useEffect(() => {
-    getEventById(id);
+    if (localStorage.getItem("access")) {
+      userCtx.setAccessToken(localStorage.getItem("access"));
+      const decoded = jwtDecode(localStorage.getItem("access"));
+      userCtx.setLoggedInUserId(decoded.id);
+      getEventById(id);
+    } else {
+      navigate("/login");
+    }
   }, []);
-
-  console.log(responseRef.current.value);
-  console.log(typeof responseRef.current.value);
-  console.log(dietRef.current.value);
 
   return (
     <>
