@@ -30,14 +30,16 @@ const EventListing = (props) => {
           <button className={`${styles.btn}`}>VIEW EVENT</button>
         </Link>
         <br />
+
+        <button className={`${styles.btn}`}>ALL GUESTS</button>
+        <br />
         <button
           className={`${styles.btn}`}
           onClick={() => setShowUpdateModal(true)}
         >
-          UPDATE
+          UPDATE INFO
         </button>
         <br />
-        <button className={`${styles.btn}`}>ALL GUESTS</button>
       </div>
     </>
   );
