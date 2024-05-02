@@ -22,7 +22,7 @@ router.put(
   errorCheck,
   submitResponse
 );
-router.get("/", user, getEventsForGuest);
+router.post("/", user, getEventsForGuest);
 router.patch(
   "/update/:id",
   user,

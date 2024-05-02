@@ -30,10 +30,11 @@ const getEventsForGuest = async (req, res) => {
   try {
     const client = await pool.connect();
     const guest_id = req.decoded.id;
+    const { is_active } = req.body;
 
     const allEventsForGuest = await client.query(
-      "SELECT e.event_id, e.title, e.date, e.time, e.address, e.host_id, eg.is_attending, eg.diet FROM events e INNER JOIN event_guests eg ON e.event_id = eg.event_id INNER JOIN personnel p ON p.personnel_id = eg.guest_id WHERE eg.guest_id = $1",
-      [guest_id]
+      "SELECT e.event_id, e.title, e.date, e.time, e.address, e.host_id, eg.is_attending, eg.diet FROM events e INNER JOIN event_guests eg ON e.event_id = eg.event_id INNER JOIN personnel p ON p.personnel_id = eg.guest_id WHERE eg.guest_id = $1 AND e.is_active= $2 ",
+      [guest_id, is_active]
     );
 
     client.release();
