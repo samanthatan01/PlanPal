@@ -1,8 +1,53 @@
 # PlanPal
 
-**About The App:**
+Forget about tracking your event guestlist using a spreadsheet. With PlanPal, you can host multiple events and manage the RSVP all in one place.
 
-Out with the old and in with the new - Forget about tracking your event guestlist using a spreadsheet. With PlanPal, you can host multiple events and manage the RSVP all in one place.
+## Getting Started
+
+This is a PERN-stack application, using PostgreSQL and pg-admin as a driver.
+
+### Backend Configuration
+
+Go to the project backend folder and create a new package.json file
+
+`npm init -y`
+
+Install the packages:
+
+`npm i dotenv express-validator jsonwebtoken bcrypt uuid cors helmet express-rate-limit`
+
+For postgresql database, install the following:
+`npm i pg-admin`
+
+Create your .env and add the database path (like below for localhost)
+
+`pguser=<YOUR_PGADMIN_USERNAME>`<br>
+`pgpassword=<YOUR_PGADMIN_PASSWORD>`<br>
+`host_name='localhost'`<br>
+`port=5432,`<br>
+`db_name='planpal',`<br>
+`ACCESS_SECRET=<YOUR_ACCESS_SECRET>`<br>
+`REFRESH_SECRET=<YOUR_REFRESH_SECRET>`<br>
+
+NOTE: The ACCESS and REFRESH secrets were generated using https://www.random.org/strings/
+
+### Frontend Configuration
+
+Create .env file and add the following:
+
+`VITE_SERVER=http://localhost:5001`
+
+Install the packages:
+
+Go to the project frontend folder and install react-app: <br/>`npm i`
+
+Install react-router-dom:
+<br/> `npm install react-router-dom`
+
+Install react-pro-sidebar: <br/>
+`npm install react-pro-sidebar`
+
+Install jwt-decode:<br/> `npm i jwt-decode`
 
 ## App Features
 
@@ -61,48 +106,7 @@ Out with the old and in with the new - Forget about tracking your event guestlis
 - React
 - PostgreSQL (raw SQL with pg-admin library)
 
-## Getting Started
+## Future Enhancements
 
-### Backend Configuration
-
-Go to the project backend folder and create a new package.json file
-
-`npm init -y`
-
-Install the packages:
-
-`npm i dotenv express-validator jsonwebtoken bcrypt uuid cors helmet express-rate-limit`
-
-For postgresql database, install the following:
-`npm i pg-admin`
-
-Create your .env and add the database path (like below for localhost)
-
-`pguser=<YOUR_PGADMIN_USERNAME>`<br>
-`pgpassword=<YOUR_PGADMIN_PASSWORD>`<br>
-`host_name='localhost'`<br>
-`port=5432,`<br>
-`db_name='planpal',`<br>
-`ACCESS_SECRET=<YOUR_ACCESS_SECRET>`<br>
-`REFRESH_SECRET=<YOUR_REFRESH_SECRET>`<br>
-
-NOTE: We've generated our ACCESS and REFRESH secrets using https://www.random.org/strings/
-
-### Frontend Configuration
-
-Create .env file and add the following:
-
-`VITE_SERVER=http://localhost:5002`
-
-Install the packages:
-
-Go to the project frontend folder and install react-app: <br/>`npm i`
-
-Install react-pro-sidebar: <br/>
-`npm install react-pro-sidebar`
-
-Install jwt-decode:<br/> `npm i jwt-decode`
-
-## Architecture
-
-## Next step
+- Allow users to sync up wuth Google Calendar or iCS app
+- Allow users to pinpoin specifia locations
