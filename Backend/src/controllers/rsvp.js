@@ -13,7 +13,6 @@ const submitResponse = async (req, res) => {
     console.log(is_attending);
 
     await client.query(
-      // "INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ($1, $2, $3, $4)",
       "INSERT INTO event_guests (event_id, guest_id, diet, is_attending) VALUES ($1, $2, $3, $4) ON CONFLICT(event_id,guest_id)  DO UPDATE SET diet = EXCLUDED.diet, is_attending = EXCLUDED.is_attending",
       [event_id, guest_id, diet, is_attending]
     );
