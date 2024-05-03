@@ -98,7 +98,8 @@ Install the packages:
 
 Go to the project frontend folder and install react-app: <br/>`npm i`
 
-`Install react-pro-sidebar: npm install react-pro-sidebar`
+Install react-pro-sidebar: <br/>
+`npm install react-pro-sidebar`
 
 Install jwt-decode:<br/> `npm i jwt-decode`
 
