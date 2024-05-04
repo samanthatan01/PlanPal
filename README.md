@@ -6,6 +6,9 @@ Forget about tracking your events' guestlist using a spreadsheet. With PlanPal, 
 
 This is a PERN-stack application, using PostgreSQL and pg-admin as a driver.
 
+The planning process can be found here:
+https://trello.com/b/84iuU93v/planpal
+
 ### Backend Configuration
 
 Go to the project backend folder and create a new package.json file
@@ -64,6 +67,8 @@ Install jwt-decode:
 
 ## App Features
 
+PlanPal's notable features includes:
+
 ### Main Landing Page
 
 ![main landing page](Frontend/public/landing-page.png)
@@ -119,7 +124,7 @@ Install jwt-decode:
 - React
 - PostgreSQL (raw SQL with pg-admin library)
 
-## Future Enhancements
+## Planned Future Enhancements
 
 - Allow users to sync up with Google Calendar
 - Allow users to indicate locations using third-party API e.g OneMap (https://www.onemap.gov.sg/apidocs/)
