@@ -1,6 +1,6 @@
 # PlanPal
 
-Forget about tracking your event guestlist using a spreadsheet. With PlanPal, you can host multiple events and manage the RSVP all in one place.
+Forget about tracking your events' guestlist using a spreadsheet. With PlanPal, you can host multiple events and manage the RSVP all in one place.
 
 ## Getting Started
 
@@ -17,17 +17,24 @@ Install the packages:
 `npm i dotenv express-validator jsonwebtoken bcrypt uuid cors helmet express-rate-limit`
 
 For postgresql database, install the following:
-<br/> `npm i pg-admin`
+
+`npm i pg-admin`
 
 Create your .env and add the database path (like below for localhost)
 
-`pguser=<YOUR_PGADMIN_USERNAME>`<br>
-`pgpassword=<YOUR_PGADMIN_PASSWORD>`<br>
-`host_name='localhost'`<br>
-`port=5432,`<br>
-`db_name='planpal',`<br>
-`ACCESS_SECRET=<YOUR_ACCESS_SECRET>`<br>
-`REFRESH_SECRET=<YOUR_REFRESH_SECRET>`<br>
+`pguser=<YOUR_PGADMIN_USERNAME>`
+
+`pgpassword=<YOUR_PGADMIN_PASSWORD>`
+
+`host_name='localhost'`
+
+`port=5432,`
+
+`db_name='planpal',`
+
+`ACCESS_SECRET=<YOUR_ACCESS_SECRET>`
+
+`REFRESH_SECRET=<YOUR_REFRESH_SECRET>`
 
 NOTE: The ACCESS and REFRESH secrets were generated using https://www.random.org/strings/
 
@@ -39,15 +46,21 @@ Create .env file and add the following:
 
 Install the packages:
 
-Go to the project frontend folder and install react-app: <br/>`npm i`
+Go to the project frontend folder and install react-app:
+
+`npm i`
 
 Install react-router-dom:
-<br/> `npm install react-router-dom`
 
-Install react-pro-sidebar: <br/>
+`npm install react-router-dom`
+
+Install react-pro-sidebar:
+
 `npm install react-pro-sidebar`
 
-Install jwt-decode:<br/> `npm i jwt-decode`
+Install jwt-decode:
+
+`npm i jwt-decode`
 
 ## App Features
 
