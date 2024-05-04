@@ -17,7 +17,7 @@ Install the packages:
 `npm i dotenv express-validator jsonwebtoken bcrypt uuid cors helmet express-rate-limit`
 
 For postgresql database, install the following:
-`npm i pg-admin`
+<br/> `npm i pg-admin`
 
 Create your .env and add the database path (like below for localhost)
 
@@ -108,5 +108,5 @@ Install jwt-decode:<br/> `npm i jwt-decode`
 
 ## Future Enhancements
 
-- Allow users to sync up wuth Google Calendar or iCS app
-- Allow users to pinpoin specifia locations
+- Allow users to sync up with Google Calendar
+- Allow users to indicate locations using third-party API e.g OneMap (https://www.onemap.gov.sg/apidocs/)
